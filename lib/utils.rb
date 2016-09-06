@@ -10,5 +10,9 @@ module Utils
     (Game::SCREEN_WIDTH / 2) - (object.width / 2)
   end
 
+  def self.center_y(object)
+    (Game::SCREEN_HEIGHT / 2) - (object.height / 2)
+  end
+
 
 end

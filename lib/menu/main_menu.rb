@@ -29,8 +29,38 @@ class MainMenu
   end
 
   def button_down(id)
-    if id == Gosu::KbEscape
+    case id
+      when Gosu::KbEscape
+        @window.close
+      when Gosu::KbSpace
+        select_option!
+      when Gosu::KbDown, Gosu::KbUp
+        move_to_different_option
+    end
+
+  end
+
+  def update
+
+  end
+
+  def move_to_different_option
+      @current_option = if @current_option == OPTIONS[:play]
+      OPTIONS[:exit]
+    else
+      OPTIONS[:play]
+    end
+  end
+
+  def select_option!
+    case @current_option
+    when OPTIONS[:play]
+      @window.show_level
+    when OPTIONS[:exit]
       @window.close
     end
   end
+
+
+
 end

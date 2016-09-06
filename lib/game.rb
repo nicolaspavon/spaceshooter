@@ -1,5 +1,6 @@
 require 'gosu'
 require_relative 'menu/main_menu'
+require_relative 'level/level'
 require_relative 'utils'
 
 class Game < Gosu::Window
@@ -11,9 +12,22 @@ class Game < Gosu::Window
     super(SCREEN_WIDTH, SCREEN_HEIGHT, fullscreen: false)
     self.caption = "SpaceShooter"
 
-    @current_screen = MainMenu.new(self)
+    @main_menu = MainMenu.new(self)
+    @current_screen = @main_menu
 
 
+  end
+
+  def update
+    @current_screen.update
+  end
+  def show_main_menu
+    @current_screen = @main_menu
+
+  end
+
+  def show_level
+    @current_screen = Level.new(self)
   end
 
   def button_down(id)
