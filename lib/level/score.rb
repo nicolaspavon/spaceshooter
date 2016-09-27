@@ -2,6 +2,7 @@
 class Score
   MARGIN_TOP = 10
   MARGIN_RIGHT = 120
+  attr_reader :points
 
   def initialize
     @points = 0
