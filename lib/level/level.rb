@@ -24,7 +24,17 @@ class Level
     end
     create_enemy_ship
     unless @enemy_ships.nil? || @enemy_ships.empty?
-      @enemy_ships.each {|enemy_ship| enemy_ship.move!}
+      @enemy_ships.each do |enemy_ship|
+        enemy_ship.move!
+        if enemy_ship.was_hit?(@lasers)
+          enemy_ship.destroy!
+          @score.update_points!(enemy_ship.points)
+        elsif enemy_ship.is_out?
+          @lifeCounter.lose_life!
+          @window.show_game_over(@score.points) if @lifeCounter.game_over?
+        end
+      end
+      @enemy_ships.reject! {|enemy_ship| enemy_ship.is_out? || enemy_ship.destroyed?}
     end
 
   end

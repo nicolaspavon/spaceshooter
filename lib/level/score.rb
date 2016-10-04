@@ -13,5 +13,8 @@ class Score
     @text.draw @points, @x, MARGIN_TOP, 1
 
   end
+  def update_points!(points)
+    @points += points
+  end
 
 end
